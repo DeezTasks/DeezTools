@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: ingress-nginx
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ingress-nginx
+    repoURL: 'https://github.com/DeezTasks/DeezTools.git'
+    targetRevision: HEAD
+  project: deeztasks
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: argo/argocd
+    repoURL: 'https://github.com/BrentGruberOrg/tools-deploy.git'
+    targetRevision: HEAD
+  project: brentgruberorg
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
